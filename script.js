@@ -1,8 +1,11 @@
-//your JS code here. If required.
-document.querySelector('.weather-button').addEventListener('click', function(){
-	fetch('https://openweathermap.org/2.5/weather?q=London&appid=d2b7bc546a476ee61d5675dfb844c8c0
-')
-	.then(response => response.json())
+document.querySelector('.weather-button').addEventListener('click', function() {
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=d2b7bc546a476ee61d5675dfb844c8c0')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             // Extract weather information from the data
             const weatherDescription = data.weather[0].description;
